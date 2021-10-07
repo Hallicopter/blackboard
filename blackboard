@@ -20,7 +20,26 @@ fi
 
 # Adds the log in the format "Date, Activity, Time"
 function add_log {
-	echo "$(date +%F)", "$2", "$3", "$4" >> ~/.blackboard/timelog.txt
+
+	for opt in "$@"
+	do
+		case $opt in
+	    		-sat)
+				echo "$(date +%F)", "$2", "$3", "satisfying" >> ~/.blackboard/timelog.txt
+	      			exit
+				;;
+	    		-unsat)
+				echo "$(date +%F)", "$2", "$3", "unsatisfying" >> ~/.blackboard/timelog.txt
+	      			exit
+				;;
+	    		-indiff)
+				echo "$(date +%F)", "$2", "$3", "indifferent" >> ~/.blackboard/timelog.txt
+	      			exit
+				;;
+	  	esac
+	done
+
+	echo -e "${RED}You need to enter what you feel about the task.${NC}\n -unsat for unsatisfying  \n -sat for satisfying \n -indiff for indifferent"
 }
 
 function show_logs {

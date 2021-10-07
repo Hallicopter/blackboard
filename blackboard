@@ -20,7 +20,7 @@ fi
 
 # Adds the log in the format "Date, Activity, Time"
 function add_log {
-	echo `date +%F`, "$2", "$3", "$4" >> ~/.blackboard/timelog.txt
+	echo "$(date +%F)", "$2", "$3", "$4" >> ~/.blackboard/timelog.txt
 }
 
 function show_logs {

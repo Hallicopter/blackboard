@@ -9,7 +9,7 @@ I made this to not log every hour of the day. I wanted an easy mechanism to log 
 ## Installation
 Run
 ```
-wget https://raw.githubusercontent.com/Hallicopter/blackboard/master/install.sh | sh
+sh -c "$(wget https://raw.githubusercontent.com/Hallicopter/blackboard/master/install.sh -O -)"
 ```
 Alternately
 

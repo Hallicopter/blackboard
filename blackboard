@@ -151,6 +151,7 @@ function plot_stats {
     echo -e "${RED} No records found for that date ${NC}"
     exit
   fi
+  echo -e "\n"
   plot $(( $SAT*100/$TOTAL )) "Percentage of logged time spent in satisfying activities"
   echo -e "\n"
   plot $(( $UNSAT*100/$TOTAL )) "Percentage of logged time spent in unsatisfying activities"

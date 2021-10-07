@@ -12,19 +12,19 @@ RED='\033[0;31m'
 GREEN='\x1b[1;32m'
 NC='\033[0m'
 
-if [ ! -d ~/.logger ]; then
-  	echo "Logger folder doesn't exits, creating logger folder under ~/.blackboard"
+if [ ! -d ~/.blackboard ]; then
+  	echo "Blackboard folder doesn't exits, creating logger folder under ~/.blackboard"
 	mkdir -p ~/.blackboard;
 fi
 
 
 # Adds the log in the format "Date, Activity, Time"
 function add_log {
-	echo `date +%F`, $2, $3 >> ~/.logger/timelog.txt
+	echo `date +%F`, "$2", "$3", "$4" >> ~/.blackboard/timelog.txt
 }
 
 function show_logs {
-	cat ~/.logger/timelog.txt | column -s, -t | less -#2 -N -S
+	cat ~/.blackboard/timelog.txt | column -s, -t | less -#2 -N -S
 }
 
 green_echo() {

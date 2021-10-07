@@ -190,8 +190,8 @@ if [ "$1" == "" ]; then
 	
 	print_logo
 
-	echo -e "\n\n\t--add or -a : To add an entry, run with '-a <activity> <timespent> < -unsat | -sat | -indiff >'. Example:"
-	green_echo "\t\tbb -a 'saw movie' 2h -unsat"
+	echo -e "\n\n\t--add or -a : To add an entry, run with '-a <activity> <timespent in mins> < -unsat | -sat | -indiff >'. Example:"
+	green_echo "\t\tbb -a 'saw movie' 60m -unsat"
 	echo -e "\n\t--show or -s: To see all the logs, run with '-s'. Example:"
 	green_echo "\t\tbb -s"
   echo -e "\n\t--plot or -p: To see a graph of logs, run with '-p <yyyy-mm-dd>'. Example:"

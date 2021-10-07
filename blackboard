@@ -195,7 +195,10 @@ if [ "$1" == "" ]; then
 	echo -e "\n\t--show or -s: To see all the logs, run with '-s'. Example:"
 	green_echo "\t\tbb -s"
   echo -e "\n\t--plot or -p: To see a graph of logs, run with '-p <yyyy-mm-dd>'. Example:"
-  green_echo "\t\tbb -p 2021-10-08"
+  green_echo "\t\tbb -p 2021-10-08\n\n"
+
+  echo -e "\t${RED} NOTE: ${NC}You need to enter what you feel about the task.\n\t\t -unsat for unsatisfying  \n\t\t -sat for satisfying \n\t\t -indiff for indifferent"
+
 fi
 if [ "$1" == "-a" -o "$1" == "--add" ]; then
 	add_log "$@"

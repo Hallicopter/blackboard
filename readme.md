@@ -25,7 +25,7 @@ $ bb -s
 
   1 2021-10-07   Worked on blackboard                      75m   satisfying 
   2 2021-10-07   Made some fixes on blackboard             10m   satisfying
-  3 2021-10-07   Ate lunch                                 45m   satisfying
+  3 2021-10-07   Ate lunch                                 45m   indifferent
   4 2021-10-07   Added flags to blackboard                 60m   satisfying
   5 2021-10-07   Saw the real housewives of beverly hills  45m   unsatisfying
   6 2021-10-07   Saw instagram reels                       75m   unsatisfying

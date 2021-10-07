@@ -193,7 +193,7 @@ if [ "$1" == "" ]; then
 	green_echo "\t\tbb -a 'saw movie' 2h -unsat"
 	echo -e "\n\t--show or -s: To see all the logs, run with '-s'. Example:"
 	green_echo "\t\tbb -s"
-  echo -e "\n\t--show or -s: To see a graph of logs, run with '-p <yyyy-mm-dd>'. Example:"
+  echo -e "\n\t--plot or -p: To see a graph of logs, run with '-p <yyyy-mm-dd>'. Example:"
   green_echo "\t\tbb -p 2021-10-08"
 fi
 if [ "$1" == "-a" -o "$1" == "--add" ]; then

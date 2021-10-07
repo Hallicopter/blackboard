@@ -59,7 +59,7 @@ if [ "$1" == "" ]; then
 
 fi
 if [ "$1" == "-a" -o "$1" == "--add" ]; then
-	add_log $*
+	add_log "$@"
 fi
 if [ "$1" == "-s" -o "$1" == "--show" ]; then
 	show_logs

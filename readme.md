@@ -34,7 +34,7 @@ $ bb -s
 ### View graphs
 
 ```
-$ bb -p 2021-10-07
+$ bb -p 2021-10-08
 
 
         Percentage of logged time spent in satisfying activities

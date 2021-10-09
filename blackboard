@@ -211,8 +211,10 @@ if [ "$1" == "" ]; then
 
 	echo -e "\n\n\t--add or -a : To add an entry, run with '-a <activity> <timespent in mins> < -unsat | -sat | -indiff >'. Example:"
 	green_echo "\t\tbb -a 'saw movie' 60m -unsat"
-	echo -e "\n\t--show or -s: To see all the logs, run with '-s'. Example:"
+	echo -e "\n\t--show or -s: To see all the logs, run with '-s'. To see only today's logs, pass -t. Example:"
 	green_echo "\t\tbb -s"
+	echo -e "\t\t     OR         "
+	green_echo "\t\tbb -s -t\n\n"
 	echo -e "\n\t--plot or -p: To see a graph of logs, run with '-p <yyyy-mm-dd>'. To see lifetime stats, pass no date. To see today's stats, pass -t. Example:"
 	green_echo "\t\tbb -p 2021-10-08"
 	echo -e "\t\t     OR         "

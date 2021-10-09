@@ -1,7 +1,7 @@
 # Blackboard
 The simple logger
 
-![image](https://i.imgur.com/0AG3Ahs.png)
+![image](https://i.imgur.com/tBwSwh2.png)
 
 ## Philosophy
 I made this to not log every hour of the day. I wanted an easy mechanism to log things I did when I felt like. At the end of it, I want to be able to see if I am spending time in things that satisfy me.

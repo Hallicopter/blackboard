@@ -146,17 +146,26 @@ function plot_stats {
   INDIFF=$(grep ' indifferent' ~/.blackboard/timelog.txt | grep "$1" | cut -d, -f3 | sed 's/.$//' | paste -sd+ - | bc)
   SAT=$(grep ' satisfying' ~/.blackboard/timelog.txt | grep "$1" | cut -d, -f3 | sed 's/.$//' | paste -sd+ - | bc)
   UNSAT=$(grep ' unsatisfying' ~/.blackboard/timelog.txt | grep "$1" | cut -d, -f3 | sed 's/.$//' | paste -sd+ - | bc)
-  TOTAL=$(cat ~/.blackboard/timelog.txt | cut -d, -f3 | sed 's/.$//' | paste -sd+ - | bc)
-  if [ "$TOTAL" == "" -o "$SAT" == "" -o "$UNSAT" == "" ]; then
+  TOTAL=$(cat ~/.blackboard/timelog.txt | grep "$1"  | cut -d, -f3 | sed 's/.$//' | paste -sd+ - | bc)
+  if [ "$TOTAL" == "" ]; then
     echo -e "${RED} No records found for that date ${NC}"
     exit
   fi
-  echo -e "\n"
-  plot $(( $SAT*100/$TOTAL )) "Percentage of logged time spent in satisfying activities"
-  echo -e "\n"
-  plot $(( $UNSAT*100/$TOTAL )) "Percentage of logged time spent in unsatisfying activities"
-  echo -e "\n"
-  plot $(( $INDIFF*100/$TOTAL )) "Percentage of logged time spent in neutral activities"
+
+  if [ "$SAT" != "" ]; then
+  	echo -e "\n"
+  	plot $(( $SAT*100/$TOTAL )) "Percentage of logged time spent in satisfying activities"
+  fi
+
+  if [ "$UNSAT" != "" ]; then
+  	echo -e "\n"
+  	plot $(( $UNSAT*100/$TOTAL )) "Percentage of logged time spent in unsatisfying activities"
+  fi
+
+  if [ "$INDIFF" != "" ]; then
+  	echo -e "\n"
+  	plot $(( $INDIFF*100/$TOTAL )) "Percentage of logged time spent in neutral activities"
+  fi
 }
 
 

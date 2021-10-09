@@ -152,19 +152,20 @@ function plot_stats {
     exit
   fi
 
+  echo -e "\n"
   if [ "$SAT" != "" ]; then
-  	echo -e "\n"
   	plot $(( $SAT*100/$TOTAL )) "Percentage of logged time spent in satisfying activities"
+  	echo -e "\n"
   fi
 
   if [ "$UNSAT" != "" ]; then
-  	echo -e "\n"
   	plot $(( $UNSAT*100/$TOTAL )) "Percentage of logged time spent in unsatisfying activities"
+  	echo -e "\n"
   fi
 
   if [ "$INDIFF" != "" ]; then
-  	echo -e "\n"
   	plot $(( $INDIFF*100/$TOTAL )) "Percentage of logged time spent in neutral activities"
+  	echo -e "\n"
   fi
 }
 

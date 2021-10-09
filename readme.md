@@ -6,6 +6,8 @@ The simple logger
 ## Philosophy
 I made this to not log every hour of the day. I wanted an easy mechanism to log things I did when I felt like. At the end of it, I want to be able to see if I am spending time in things that satisfy me.
 
+Other tools were to complex, and focused on tracking billable hours. This tool is stupid simple.
+
 ## Installation
 Run
 ```

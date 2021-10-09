@@ -177,6 +177,10 @@ function plot_stats {
 
 
 function show_logs {
+	if [ "$2" == "-t" ]; then
+		cat ~/.blackboard/timelog.txt | grep $(date +%F)  | column -s, -t | less -#2 -N -S
+	exit
+	fi
 	cat ~/.blackboard/timelog.txt | column -s, -t | less -#2 -N -S
 }
 
@@ -221,7 +225,7 @@ if [ "$1" == "-a" -o "$1" == "--add" ]; then
 	add_log "$@"
 fi
 if [ "$1" == "-s" -o "$1" == "--show" ]; then
-	show_logs
+	show_logs "$@"
 fi
 if [ "$1" == "-p" -o "$1" == "--plot" ]; then
   plot_stats "$2"

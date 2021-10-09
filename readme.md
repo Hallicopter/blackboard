@@ -23,6 +23,8 @@ make install
 
 NOTE: For some reason, you may get asked for root access during install. I didn't get asked for it while testing locally. If you do get asked for permission, don't worry. My script is safe, you can give it access. It doesn't do anything crazy. You can see for yourself.
 
+NOTE2: Yes, I know I am breaking a lot a of flag conventions. I don't care (at least at the moment).
+
 ## Features
 ### View your logs
 ```

@@ -13,7 +13,7 @@ GREEN='\x1b[1;32m'
 NC='\033[0m'
 
 if [ ! -d ~/.blackboard ]; then
-  	echo "Blackboard folder doesn't exits, creating logger folder under ~/.blackboard"
+	echo "Blackboard folder doesn't exits, creating logger folder under ~/.blackboard"
 	mkdir -p ~/.blackboard;
 fi
 
@@ -24,19 +24,19 @@ function add_log {
 	for opt in "$@"
 	do
 		case $opt in
-	    		-sat)
+			-sat)
 				echo "$(date +%F)", "$2", "$3", "satisfying" >> ~/.blackboard/timelog.txt
-	      			exit
+				exit
 				;;
-	    		-unsat)
+			-unsat)
 				echo "$(date +%F)", "$2", "$3", "unsatisfying" >> ~/.blackboard/timelog.txt
-	      			exit
+				exit
 				;;
-	    		-indiff)
+			-indiff)
 				echo "$(date +%F)", "$2", "$3", "indifferent" >> ~/.blackboard/timelog.txt
-	      			exit
+				exit
 				;;
-	  	esac
+		esac
 	done
 
 	echo -e "${RED}You need to enter what you feel about the task.${NC}\n -unsat for unsatisfying  \n -sat for satisfying \n -indiff for indifferent"
@@ -56,26 +56,26 @@ function add_log {
 # Inital dependancy on perl added due to brain-dead MacOSX "expr"
 #
 function plot {
-  PATH="/usr/ucb:/usr/bin:/usr/5bin:$PATH"
-  export PATH
+	PATH="/usr/ucb:/usr/bin:/usr/5bin:$PATH"
+	export PATH
 
   # Check that it is a number
   arg1=`expr "$1" : '\(-*[0-9][0-9]*\)' 2>/dev/null`
   if [ ! "$arg1" ]; then
-    echo >&2 "Percentage given is not a number!"
-    echo >&2 "Usage: percent  number  [title]"
-    echo >&2 "       percent  numerator denominator title"
-    exit 10
+	  echo >&2 "Percentage given is not a number!"
+	  echo >&2 "Usage: percent  number  [title]"
+	  echo >&2 "       percent  numerator denominator title"
+	  exit 10
   fi
   arg2=`expr "$2" : '\(-*[0-9][0-9]*\)' 2>/dev/null`
 
   # get the arguments
   case $# in
-    1) percent=$arg1 ;;
-    2) percent=$arg1; title="$2" ;;
-    3) percent=`expr 100 \* $arg1 / $arg2`; title="$3" ;;
-    *) echo >&2 "Usage: percent  num  [title]"
-       exit 10 ;;
+	  1) percent=$arg1 ;;
+	  2) percent=$arg1; title="$2" ;;
+	  3) percent=`expr 100 \* $arg1 / $arg2`; title="$3" ;;
+	  *) echo >&2 "Usage: percent  num  [title]"
+		  exit 10 ;;
   esac
 
   # half the percentage value --> number chars!
@@ -89,8 +89,8 @@ function plot {
   # ----------------------------
   # Get terminal charactistics...
   if [ -t 1 -a "X$TERM" != "X" -a "X$TERM" != 'Xdumb' ]; then
-    B="`tput bold 2>/dev/null`"        # bold ON
-    N="`tput sgr0 2>/dev/null`"        # all attributes OFF
+	  B="`tput bold 2>/dev/null`"        # bold ON
+	  N="`tput sgr0 2>/dev/null`"        # all attributes OFF
 
     # For get this, too many terminals don't do this right
     # As such I will handle specific terminals ourselves
@@ -99,16 +99,16 @@ function plot {
     #tput enacs   # enable alturnative characters - ???
 
     case "$TERM" in
-    vs100|xterm*)
-      #Gon="(0"; Goff="(B"
-      rule="${Gon}tqqqqnqqqqnqqqqnqqqqnqqqqnqqqqnqqqqnqqqqnqqqqnqqqqu${Goff}"
-      char="a"; equal="x"; more=">"; less="<";
-      ;;
-    dtterm) # CDE Terminals do not have a graphic "a"!
-      #Gon="(0"; Goff="(B"
-      rule="${Gon}tqqqqnqqqqnqqqqnqqqqnqqqqnqqqqnqqqqnqqqqnqqqqnqqqqu${Goff}"
-      char="#"; equal="|"; more=">"; less="<";
-      ;;
+	    vs100|xterm*)
+		    #Gon="(0"; Goff="(B"
+		    rule="${Gon}tqqqqnqqqqnqqqqnqqqqnqqqqnqqqqnqqqqnqqqqnqqqqnqqqqu${Goff}"
+		    char="a"; equal="x"; more=">"; less="<";
+		    ;;
+	    dtterm) # CDE Terminals do not have a graphic "a"!
+		    #Gon="(0"; Goff="(B"
+		    rule="${Gon}tqqqqnqqqqnqqqqnqqqqnqqqqnqqqqnqqqqnqqqqnqqqqnqqqqu${Goff}"
+		    char="#"; equal="|"; more=">"; less="<";
+		    ;;
     esac
   fi
 
@@ -118,8 +118,8 @@ function plot {
   line=`perl -e "print '$char' x 50, '$equal'"`
 
   if [ "$title" ]; then
-    p=`perl -e '$p=(73-length("'"$title"'"))/2; $p = 0 if $p < 0; print " " x $p'`
-    echo "$p$title"   # print the centered title
+	  p=`perl -e '$p=(73-length("'"$title"'"))/2; $p = 0 if $p < 0; print " " x $p'`
+	  echo "$p$title"   # print the centered title
   fi
 
   # Rulers are 52 characters, figure out the indent prefix to use.
@@ -130,48 +130,48 @@ function plot {
 
   # print the actual guage
   if [ $percent -lt 0 ]; then
-    echo "$p$Gon$less$equal$Goff"
+	  echo "$p$Gon$less$equal$Goff"
   elif [ $percent -eq 0 ]; then
-    echo "$p $Gon$equal$Goff"
+	  echo "$p $Gon$equal$Goff"
   elif [ $percent -gt 100 ]; then
-    echo "$p $Gon$over$Goff"
+	  echo "$p $Gon$over$Goff"
   else
-    # expr replaced by perl equivelent, due to brain dead MacOSX expr command
-    #echo "$p$Gon`expr substr "$line" 1 $chars`$Goff"
-    echo "$p $Gon"`perl -e "print substr('$line', 0, $chars)"`"$Goff"
+	  # expr replaced by perl equivelent, due to brain dead MacOSX expr command
+	  #echo "$p$Gon`expr substr "$line" 1 $chars`$Goff"
+	  echo "$p $Gon"`perl -e "print substr('$line', 0, $chars)"`"$Goff"
   fi
 }
 
 function plot_stats {
-  DATE="$1"
-  if [ "$1" == "-t" ]; then
-	  DATE=$(date +%F)
-  fi
+	DATE="$1"
+	if [ "$1" == "-t" ]; then
+		DATE=$(date +%F)
+	fi
 
-  INDIFF=$(grep ' indifferent' ~/.blackboard/timelog.txt | grep "$DATE" | cut -d, -f3 | sed 's/.$//' | paste -sd+ - | bc)
-  SAT=$(grep ' satisfying' ~/.blackboard/timelog.txt | grep "$DATE" | cut -d, -f3 | sed 's/.$//' | paste -sd+ - | bc)
-  UNSAT=$(grep ' unsatisfying' ~/.blackboard/timelog.txt | grep "$DATE" | cut -d, -f3 | sed 's/.$//' | paste -sd+ - | bc)
-  TOTAL=$(cat ~/.blackboard/timelog.txt | grep "$DATE"  | cut -d, -f3 | sed 's/.$//' | paste -sd+ - | bc)
-  if [ "$TOTAL" == "" ]; then
-    echo -e "${RED} No records found for that date ${NC}"
-    exit
-  fi
+	INDIFF=$(grep ' indifferent' ~/.blackboard/timelog.txt | grep "$DATE" | cut -d, -f3 | sed 's/.$//' | paste -sd+ - | bc)
+	SAT=$(grep ' satisfying' ~/.blackboard/timelog.txt | grep "$DATE" | cut -d, -f3 | sed 's/.$//' | paste -sd+ - | bc)
+	UNSAT=$(grep ' unsatisfying' ~/.blackboard/timelog.txt | grep "$DATE" | cut -d, -f3 | sed 's/.$//' | paste -sd+ - | bc)
+	TOTAL=$(cat ~/.blackboard/timelog.txt | grep "$DATE"  | cut -d, -f3 | sed 's/.$//' | paste -sd+ - | bc)
+	if [ "$TOTAL" == "" ]; then
+		echo -e "${RED} No records found for that date ${NC}"
+		exit
+	fi
 
-  echo -e "\n"
-  if [ "$SAT" != "" ]; then
-  	plot $(( $SAT*100/$TOTAL )) "Percentage of logged time spent in satisfying activities"
-  	echo -e "\n"
-  fi
+	echo -e "\n"
+	if [ "$SAT" != "" ]; then
+		plot $(( $SAT*100/$TOTAL )) "Percentage of logged time spent in satisfying activities"
+		echo -e "\n"
+	fi
 
-  if [ "$UNSAT" != "" ]; then
-  	plot $(( $UNSAT*100/$TOTAL )) "Percentage of logged time spent in unsatisfying activities"
-  	echo -e "\n"
-  fi
+	if [ "$UNSAT" != "" ]; then
+		plot $(( $UNSAT*100/$TOTAL )) "Percentage of logged time spent in unsatisfying activities"
+		echo -e "\n"
+	fi
 
-  if [ "$INDIFF" != "" ]; then
-  	plot $(( $INDIFF*100/$TOTAL )) "Percentage of logged time spent in neutral activities"
-  	echo -e "\n"
-  fi
+	if [ "$INDIFF" != "" ]; then
+		plot $(( $INDIFF*100/$TOTAL )) "Percentage of logged time spent in neutral activities"
+		echo -e "\n"
+	fi
 }
 
 
@@ -179,13 +179,13 @@ function plot_stats {
 function show_logs {
 	if [ "$2" == "-t" ]; then
 		cat ~/.blackboard/timelog.txt | grep $(date +%F)  | column -s, -t | less -#2 -N -S
-	exit
+		exit
 	fi
 	cat ~/.blackboard/timelog.txt | column -s, -t | less -#2 -N -S
 }
 
 function green_echo {
-    echo -e "${GREEN}$1${NC}"
+	echo -e "${GREEN}$1${NC}"
 }
 
 print_logo() {
@@ -206,19 +206,19 @@ print_logo() {
 }
 
 if [ "$1" == "" ]; then
-	
+
 	print_logo
 
 	echo -e "\n\n\t--add or -a : To add an entry, run with '-a <activity> <timespent in mins> < -unsat | -sat | -indiff >'. Example:"
 	green_echo "\t\tbb -a 'saw movie' 60m -unsat"
 	echo -e "\n\t--show or -s: To see all the logs, run with '-s'. Example:"
 	green_echo "\t\tbb -s"
-  echo -e "\n\t--plot or -p: To see a graph of logs, run with '-p <yyyy-mm-dd>'. To see lifetime stats, pass no date. To see today's stats, pass -t. Example:"
-  green_echo "\t\tbb -p 2021-10-08"
-  echo -e "\t\t     OR         "
-  green_echo "\t\tbb -p -t\n\n"
+	echo -e "\n\t--plot or -p: To see a graph of logs, run with '-p <yyyy-mm-dd>'. To see lifetime stats, pass no date. To see today's stats, pass -t. Example:"
+	green_echo "\t\tbb -p 2021-10-08"
+	echo -e "\t\t     OR         "
+	green_echo "\t\tbb -p -t\n\n"
 
-  echo -e "\t${RED} NOTE: ${NC}You need to enter what you feel about the task.\n\t\t -unsat for unsatisfying  \n\t\t -sat for satisfying \n\t\t -indiff for indifferent"
+	echo -e "\t${RED} NOTE: ${NC}You need to enter what you feel about the task.\n\t\t -unsat for unsatisfying  \n\t\t -sat for satisfying \n\t\t -indiff for indifferent"
 
 fi
 if [ "$1" == "-a" -o "$1" == "--add" ]; then
@@ -228,6 +228,6 @@ if [ "$1" == "-s" -o "$1" == "--show" ]; then
 	show_logs "$@"
 fi
 if [ "$1" == "-p" -o "$1" == "--plot" ]; then
-  plot_stats "$2"
+	plot_stats "$2"
 fi
 

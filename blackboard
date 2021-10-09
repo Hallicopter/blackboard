@@ -24,15 +24,15 @@ function add_log {
 	for opt in "$@"
 	do
 		case $opt in
-			-sat)
+			--sat)
 				echo "$(date +%F)", "$2", "$3", "satisfying" >> ~/.blackboard/timelog.txt
 				exit
 				;;
-			-unsat)
+			--unsat)
 				echo "$(date +%F)", "$2", "$3", "unsatisfying" >> ~/.blackboard/timelog.txt
 				exit
 				;;
-			-indiff)
+			--indiff)
 				echo "$(date +%F)", "$2", "$3", "indifferent" >> ~/.blackboard/timelog.txt
 				exit
 				;;
@@ -209,8 +209,8 @@ if [ "$1" == "" ]; then
 
 	print_logo
 
-	echo -e "\n\n\t--add or -a : To add an entry, run with '-a <activity> <timespent in mins> < -unsat | -sat | -indiff >'. Example:"
-	green_echo "\t\tbb -a 'saw movie' 60m -unsat"
+	echo -e "\n\n\t--add or -a : To add an entry, run with '-a <activity> <timespent in mins> < --unsat | --sat | --indiff >'. Example:"
+	green_echo "\t\tbb -a 'saw movie' 60m --unsat"
 	echo -e "\n\t--show or -s: To see all the logs, run with '-s'. To see only today's logs, pass -t. Example:"
 	green_echo "\t\tbb -s"
 	echo -e "\t\t     OR         "
@@ -220,7 +220,7 @@ if [ "$1" == "" ]; then
 	echo -e "\t\t     OR         "
 	green_echo "\t\tbb -p -t\n\n"
 
-	echo -e "\t${RED} NOTE: ${NC}You need to enter what you feel about the task.\n\t\t -unsat for unsatisfying  \n\t\t -sat for satisfying \n\t\t -indiff for indifferent"
+	echo -e "\t${RED} NOTE: ${NC}You need to enter what you feel about the task.\n\t\t --unsat for unsatisfying  \n\t\t --sat for satisfying \n\t\t --indiff for indifferent"
 
 fi
 if [ "$1" == "-a" -o "$1" == "--add" ]; then

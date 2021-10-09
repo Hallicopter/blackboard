@@ -143,10 +143,15 @@ function plot {
 }
 
 function plot_stats {
-  INDIFF=$(grep ' indifferent' ~/.blackboard/timelog.txt | grep "$1" | cut -d, -f3 | sed 's/.$//' | paste -sd+ - | bc)
-  SAT=$(grep ' satisfying' ~/.blackboard/timelog.txt | grep "$1" | cut -d, -f3 | sed 's/.$//' | paste -sd+ - | bc)
-  UNSAT=$(grep ' unsatisfying' ~/.blackboard/timelog.txt | grep "$1" | cut -d, -f3 | sed 's/.$//' | paste -sd+ - | bc)
-  TOTAL=$(cat ~/.blackboard/timelog.txt | grep "$1"  | cut -d, -f3 | sed 's/.$//' | paste -sd+ - | bc)
+  DATE="$1"
+  if [ "$1" == "-t" ]; then
+	  DATE=$(date +%F)
+  fi
+
+  INDIFF=$(grep ' indifferent' ~/.blackboard/timelog.txt | grep "$DATE" | cut -d, -f3 | sed 's/.$//' | paste -sd+ - | bc)
+  SAT=$(grep ' satisfying' ~/.blackboard/timelog.txt | grep "$DATE" | cut -d, -f3 | sed 's/.$//' | paste -sd+ - | bc)
+  UNSAT=$(grep ' unsatisfying' ~/.blackboard/timelog.txt | grep "$DATE" | cut -d, -f3 | sed 's/.$//' | paste -sd+ - | bc)
+  TOTAL=$(cat ~/.blackboard/timelog.txt | grep "$DATE"  | cut -d, -f3 | sed 's/.$//' | paste -sd+ - | bc)
   if [ "$TOTAL" == "" ]; then
     echo -e "${RED} No records found for that date ${NC}"
     exit

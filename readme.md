@@ -20,6 +20,9 @@ git clone https://github.com/Hallicopter/blackboard/
 cd blackboard
 make install
 ```
+
+NOTE: For some reason, you may get asked for root access during install. I didn't get asked for it while testing locally. If you do get asked for permission, don't worry. My script is safe, you can give it access. It doesn't do anything crazy. You can see for yourself.
+
 ## Features
 ### View your logs
 ```
